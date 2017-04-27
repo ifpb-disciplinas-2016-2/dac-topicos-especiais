@@ -1,9 +1,7 @@
 package ifpb.ads.dac.domain;
 
-import ifpb.ads.dac.service.LogEntities;
 import java.io.Serializable;
 import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
@@ -20,6 +18,7 @@ public class Aluno implements Serializable{
     @GeneratedValue
     private int id;
     private String nome;
+    private Situacao status = Situacao.MATRICULADO;
 
     public Aluno() {
     }
@@ -68,6 +67,12 @@ public class Aluno implements Serializable{
     @Override
     public String toString() {
         return "Aluno{" + "id=" + id + ", nome=" + nome + '}';
+    }
+
+    enum Situacao {
+        MATRICULADO,
+        APROVADO,
+        REPROVADO;
     }
     
 }

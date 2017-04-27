@@ -1,8 +1,10 @@
 package ifpb.ads.dac.service;
 
+import ifpb.ads.dac.aop.Auditoria;
 import ifpb.ads.dac.domain.Aluno;
 import java.time.LocalDateTime;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Schedule;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
@@ -25,9 +27,12 @@ public class ServiceAluno {
     @PersistenceContext
     private EntityManager em;
 
+    @EJB
+    private NotificadorDeAluno notificador;
+    
     public void salvarAluno(Aluno aluno) {
         em.persist(aluno);
-        
+        notificador.alunoCadastrado(aluno);
     }
 
     public List<Aluno> listarTodos() {
@@ -42,13 +47,14 @@ public class ServiceAluno {
         long fim = System.currentTimeMillis();
         String nomeMetodo = ic.getMethod().getName();
         System.out.println("demorou: " + (fim - inicio) + " no método: " + nomeMetodo);
+        // tranferindo informações entre interceptadores
         ic.getContextData().put("results", 1);
         return retornoDoMetodoDeNegocio;
     }
 
-    @Schedule(second = "5", minute = "*", hour = "*")
-    public void enviarRelatorios() {
-        System.out.println(String.format("tamanho : %d, em : %s", listarTodos().size(), 
-                LocalDateTime.now().toString()));
-    }
+//    @Schedule(second = "5", minute = "*", hour = "*")
+//    public void enviarRelatorios() {
+//        System.out.println(String.format("tamanho : %d, em : %s", listarTodos().size(), 
+//                LocalDateTime.now().toString()));
+//    }
 }

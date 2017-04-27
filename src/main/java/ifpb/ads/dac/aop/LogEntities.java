@@ -1,4 +1,4 @@
-package ifpb.ads.dac.service;
+package ifpb.ads.dac.aop;
 
 import ifpb.ads.dac.domain.Aluno;
 import java.time.LocalDateTime;
