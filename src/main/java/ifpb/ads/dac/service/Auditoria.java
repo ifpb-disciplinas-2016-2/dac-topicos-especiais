@@ -1,6 +1,5 @@
 package ifpb.ads.dac.service;
 
-import java.util.function.BiConsumer;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.interceptor.AroundInvoke;

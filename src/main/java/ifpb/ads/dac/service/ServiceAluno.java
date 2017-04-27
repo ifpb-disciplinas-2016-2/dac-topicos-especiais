@@ -27,6 +27,7 @@ public class ServiceAluno {
 
     public void salvarAluno(Aluno aluno) {
         em.persist(aluno);
+        
     }
 
     public List<Aluno> listarTodos() {

@@ -1,6 +1,6 @@
 package ifpb.ads.dac.domain;
 
-import ifpb.ads.dac.web.LogEntities;
+import ifpb.ads.dac.service.LogEntities;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
